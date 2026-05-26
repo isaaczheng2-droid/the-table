@@ -43,7 +43,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "Liu Fang's dumplings are the real deal — four varieties served in chili oil, each one a different lesson in restraint and heat. The renovated diner car is now a proper dining room with intention. Start tame and work your way to the Sichuan pork sausage, as instructed. One of the most interesting origin stories behind any restaurant in Cleveland.",
-        price: 8,
+        taste: 8,
         value: 9,
         atmosphere: 8,
       },
@@ -51,7 +51,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "Abundance earns every bit of its reputation. The Northern Chinese cooking is precise and personal — you can taste the family history in every fold. The renovated space is warm and unpretentious. The jhol-adjacent dumpling sampler ($18) in chili oil is compulsory ordering. A genuine gem in Cleveland Heights.",
-        price: 8,
+        taste: 8,
         value: 9,
         atmosphere: 7,
       },
@@ -74,7 +74,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "The setting alone is worth the trip — low lighting, century-old brick, and Terminal Tower glowing through the half-rounded windows. Lola Jacaj has created something genuinely atmospheric on West Sixth. The Ravioli di Granchio is serious pasta: jumbo lump crab, lemon zest, saffron cream. Sommelier-curated pairings elevate every course.",
-        price: 6,
+        taste: 6,
         value: 7,
         atmosphere: 9,
       },
@@ -82,7 +82,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "Italian seafood in Downtown Cleveland done with real conviction. The room is intimate and romantic without trying too hard. Owner Lola Jacaj clearly knows her wine — let her guide you. The crab ravioli is exceptional. Prices are steep but the experience justifies it for a special occasion.",
-        price: 5,
+        taste: 5,
         value: 7,
         atmosphere: 9,
       },
@@ -105,7 +105,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "Douglas Katz has built something genuinely exciting here. The clay bread alone — blistered, soft, ready to drag through everything — is worth the visit. The Indian-leaning mezze format rewards adventurous ordering: chickpea fritters, fried eggs, spinach dip. Everything is designed to layer and share. The amber-lit room creates the right mood.",
-        price: 7,
+        taste: 7,
         value: 8,
         atmosphere: 9,
       },
@@ -113,7 +113,7 @@ const INITIAL_RESTAURANTS = [
         done: true,
         description:
           "Amba is the most transportive dining room in Cleveland. Bold spices, clever contrasts, and a cocktail lounge that keeps pace with the food. The clay bread is non-negotiable. Build your table around three or four small plates and watch the meal become greater than the sum of its parts.",
-        price: 7,
+        taste: 7,
         value: 8,
         atmosphere: 9,
       },
@@ -741,7 +741,7 @@ function avg(a, b) {
 }
 
 function overallAvg(r) {
-  const cats = ["price", "value", "atmosphere"];
+  const cats = ["taste", "value", "atmosphere"];
   const vals = cats.map((c) =>
     parseFloat(avg(r.reviews[1][c], r.reviews[2][c]))
   );
@@ -933,7 +933,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
               "repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px)",
           }}
         />
-        <div style={{ maxWidth: 900, margin: "0 auto", position: "relative" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
           <div
             style={{
               fontFamily: "'DM Mono', monospace",
@@ -1050,7 +1050,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
         ))}
       </div>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 48px" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
         {topPick && (
           <div style={{ marginBottom: 64 }}>
             <div
@@ -1155,7 +1155,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             >
               ✦ Recent Reviews
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginBottom: 48 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginBottom: 48 }}>
               {recent.map((r) => (
                 <div
                   key={r.id}
@@ -1315,7 +1315,7 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   });
 
   return (
-    <div className="fade-in" style={{ maxWidth: 940, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -1595,7 +1595,7 @@ function RestaurantPage({ restaurant, setPage }) {
   const bothDone = r1.done && r2.done;
 
   const cats = [
-    { key: "price", label: "Price", icon: "💵", desc: "How fair is what you pay?" },
+    { key: "taste", label: "Taste", icon: "🍴", desc: "How does the food actually taste?" },
     { key: "value", label: "Value", icon: "⭐", desc: "Are you getting your money's worth?" },
     { key: "atmosphere", label: "Atmosphere", icon: "🕯️", desc: "Does the room match the food?" },
   ];
@@ -1617,7 +1617,7 @@ function RestaurantPage({ restaurant, setPage }) {
             backgroundImage: `radial-gradient(circle at 80% 50%, ${REVIEWERS[0].color}15, transparent 60%)`,
           }}
         />
-        <div style={{ maxWidth: 1000, margin: "0 auto", position: "relative" }}>
+        <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
           <button
             onClick={() => setPage("checklist")}
             style={{
@@ -1714,7 +1714,7 @@ function RestaurantPage({ restaurant, setPage }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1000, margin: "0 auto", padding: "48px" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "48px" }}>
         <div
           style={{
             background: "#fff",
@@ -2025,7 +2025,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
     { key: "overall", label: "Overall", icon: "🏆" },
     { key: "value", label: "Best Value", icon: "⭐" },
     { key: "atmosphere", label: "Best Atmosphere", icon: "🕯️" },
-    { key: "price", label: "Best Price", icon: "💵" },
+    { key: "taste", label: "Best Taste", icon: "🍴" },
   ];
 
   const sorted = [...reviewed].sort((a, b) => {
@@ -2037,7 +2037,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
   });
 
   return (
-    <div className="fade-in" style={{ maxWidth: 900, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -2144,7 +2144,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 16 }}>
-                  {["price", "value", "atmosphere"].map((c) => (
+                  {["taste", "value", "atmosphere"].map((c) => (
                     <div key={c} style={{ textAlign: "center" }}>
                       <div
                         style={{
@@ -2206,7 +2206,7 @@ function ReviewersPage({ restaurants }) {
   const reviewed = restaurants.filter((r) => r.reviews[1].done && r.reviews[2].done);
 
   return (
-    <div className="fade-in" style={{ maxWidth: 1000, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -2224,7 +2224,7 @@ function ReviewersPage({ restaurants }) {
         The Reviewers
       </h1>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, marginBottom: 60 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 60 }}>
         {REVIEWERS.map((rev) => (
           <div
             key={rev.id}
@@ -2361,7 +2361,7 @@ function ReviewersPage({ restaurants }) {
               </thead>
               <tbody>
                 {reviewed.flatMap((r) =>
-                  ["price", "value", "atmosphere"].map((cat, ci) => (
+                  ["taste", "value", "atmosphere"].map((cat, ci) => (
                     <tr
                       key={`${r.id}-${cat}`}
                       style={{ background: ci % 2 === 0 ? "#faf7f2" : "#fff" }}
