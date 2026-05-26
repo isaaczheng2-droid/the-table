@@ -803,7 +803,8 @@ const FONTS = `
 
 const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #f5f0e8; color: #1a1410; }
+  html, body, #root { width: 100%; min-height: 100vh; }
+  body { background: #f5f0e8; color: #1a1410; overflow-x: hidden; }
   .fade-in { animation: fadeIn 0.5s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
@@ -816,6 +817,58 @@ const css = `
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #ede8e0; }
   ::-webkit-scrollbar-thumb { background: #c8b89a; border-radius: 3px; }
+
+  .page-wrap { width: 100%; padding: 48px 5%; }
+  .page-wrap-wide { width: 100%; padding: 60px 5%; }
+  .hero-inner { width: 100%; padding: 0 5%; }
+
+  .stats-bar { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
+
+  .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .reviewer-profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+  .score-row { display: flex; align-items: flex-start; gap: 24px; }
+  .score-row-label { width: 200px; flex-shrink: 0; }
+  .checklist-status-bar { display: flex; flex-wrap: wrap; }
+  .checklist-status-item { display: flex; align-items: center; gap: 10px; padding: 10px 24px; flex: 1; min-width: 160px; border-right: 1px solid #ede8e0; }
+  .checklist-status-item:last-child { border-right: none; }
+  .top-pick-inner { display: flex; gap: 40px; align-items: center; }
+  .restaurant-header-inner { display: flex; gap: 32px; align-items: flex-start; }
+  .rankings-mini-scores { display: flex; gap: 16px; }
+  .sort-tabs { display: flex; gap: 0; margin-bottom: 40px; border: 1px solid #ede8e0; overflow: hidden; }
+  .recent-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px; }
+  .nav-links { display: flex; gap: 32px; }
+  .photo-row { display: flex; gap: 16px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+
+  @media (max-width: 900px) {
+    .page-wrap { padding: 32px 4%; }
+    .page-wrap-wide { padding: 32px 4%; }
+    .hero-inner { padding: 0 4%; }
+    .review-grid { grid-template-columns: 1fr; }
+    .reviewer-profile-grid { grid-template-columns: 1fr; gap: 24px; }
+    .score-row { flex-wrap: wrap; gap: 16px; }
+    .score-row-label { width: 100%; }
+    .top-pick-inner { flex-wrap: wrap; gap: 20px; }
+    .restaurant-header-inner { flex-wrap: wrap; gap: 20px; }
+    .rankings-mini-scores { display: none; }
+    .sort-tabs { flex-wrap: wrap; }
+    .recent-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-row { flex-wrap: wrap; }
+  }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 24px 4%; }
+    .page-wrap-wide { padding: 24px 4%; }
+    .hero-inner { padding: 0 4%; }
+    .stats-bar { gap: 24px; }
+    .recent-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 16px; }
+    .sort-tabs button { font-size: 12px !important; padding: 10px 8px !important; }
+    .checklist-status-item { min-width: 45%; border-right: none; border-bottom: 1px solid #ede8e0; }
+    .rankings-row { flex-wrap: wrap; gap: 12px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .photo-row { gap: 8px; }
+  }
 `;
 
 // ─── NAV ─────────────────────────────────────────────────────────────────────
@@ -831,7 +884,7 @@ function Nav({ page, setPage }) {
     <nav
       style={{
         background: "#1a1410",
-        padding: "0 48px",
+        padding: "0 5%",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -873,7 +926,7 @@ function Nav({ page, setPage }) {
           </div>
         </div>
       </div>
-      <div style={{ display: "flex", gap: 32 }}>
+      <div className="nav-links">
         {links.map((l) => (
           <span
             key={l.key}
@@ -912,7 +965,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
       <div
         style={{
           background: "linear-gradient(135deg, #1a1410 0%, #2d1f17 50%, #1a1410 100%)",
-          padding: "100px 48px 80px",
+        padding: "100px 5% 80px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -933,7 +986,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
               "repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px)",
           }}
         />
-        <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
+        <div style={{ width: "100%", position: "relative" }}>
           <div
             style={{
               fontFamily: "'DM Mono', monospace",
@@ -1013,7 +1066,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
       <div
         style={{
           background: "#C8472C",
-          padding: "20px 48px",
+          padding: "20px 5%",
           display: "flex",
           gap: 48,
           justifyContent: "center",
@@ -1050,7 +1103,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
         ))}
       </div>
 
-      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
+      <div style={{ width: "100%", padding: "60px 5%" }}>
         {topPick && (
           <div style={{ marginBottom: 64 }}>
             <div
@@ -1066,15 +1119,12 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
               ✦ Current Top Pick
             </div>
             <div
-              className="card-hover"
+              className="card-hover top-pick-inner"
               onClick={() => { setSelectedId(topPick.id); setPage("restaurant"); }}
               style={{
                 background: "#1a1410",
                 color: "#f5f0e8",
                 padding: 40,
-                display: "flex",
-                gap: 40,
-                alignItems: "center",
               }}
             >
               <div style={{ fontSize: 72, lineHeight: 1, flexShrink: 0 }}>
@@ -1155,7 +1205,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             >
               ✦ Recent Reviews
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, marginBottom: 48 }}>
+            <div className="recent-grid">
               {recent.map((r) => (
                 <div
                   key={r.id}
@@ -1315,7 +1365,7 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   });
 
   return (
-    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in page-wrap-wide">
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -1605,7 +1655,7 @@ function RestaurantPage({ restaurant, setPage }) {
       <div
         style={{
           background: "#1a1410",
-          padding: "60px 48px 48px",
+          padding: "60px 5% 48px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -1617,7 +1667,7 @@ function RestaurantPage({ restaurant, setPage }) {
             backgroundImage: `radial-gradient(circle at 80% 50%, ${REVIEWERS[0].color}15, transparent 60%)`,
           }}
         />
-        <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
+        <div style={{ width: "100%", position: "relative" }}>
           <button
             onClick={() => setPage("checklist")}
             style={{
@@ -1634,7 +1684,7 @@ function RestaurantPage({ restaurant, setPage }) {
           >
             ← Back to List
           </button>
-          <div style={{ display: "flex", gap: 32, alignItems: "flex-start" }}>
+          <div className="restaurant-header-inner">
             <div style={{ fontSize: 80, lineHeight: 1, flexShrink: 0 }}>{r.coverEmoji}</div>
             <div style={{ flex: 1 }}>
               <div
@@ -1714,15 +1764,13 @@ function RestaurantPage({ restaurant, setPage }) {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "48px" }}>
+      <div style={{ width: "100%", padding: "48px 5%" }}>
         <div
+          className="checklist-status-bar"
           style={{
             background: "#fff",
             padding: 24,
             marginBottom: 40,
-            display: "flex",
-            gap: 0,
-            flexWrap: "wrap",
             boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
           }}
         >
@@ -1734,14 +1782,7 @@ function RestaurantPage({ restaurant, setPage }) {
           ].map((s, i) => (
             <div
               key={s.label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                padding: "10px 24px",
-                borderRight: i < 3 ? "1px solid #ede8e0" : "none",
-                flex: 1,
-              }}
+              className="checklist-status-item"
             >
               <div
                 style={{
@@ -1811,7 +1852,7 @@ function RestaurantPage({ restaurant, setPage }) {
           <>
             <div style={{ marginBottom: 48 }}>
               <SectionTitle>Reviewer Impressions</SectionTitle>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+              <div className="review-grid">
                 {REVIEWERS.map((rev) => {
                   const rv = r.reviews[rev.id];
                   return (
@@ -1885,7 +1926,7 @@ function RestaurantPage({ restaurant, setPage }) {
                       padding: 28, boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "flex-start", gap: 24 }}>
+                    <div className="score-row" style={{ display: "flex" }}>
                       <div style={{ width: 180, flexShrink: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
                           <span style={{ fontSize: 20 }}>{cat.icon}</span>
@@ -2037,7 +2078,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
   });
 
   return (
-    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in page-wrap-wide">
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -2057,7 +2098,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
 
       <div
         style={{
-          display: "flex", gap: 0, marginBottom: 40,
+          className="sort-tabs" style={{ marginBottom: 40,
           border: "1px solid #ede8e0", overflow: "hidden",
         }}
       >
@@ -2101,7 +2142,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
             return (
               <div
                 key={r.id}
-                className="card-hover"
+                className="card-hover rankings-row"
                 onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}
                 style={{
                   background: "#fff", padding: 24,
@@ -2143,7 +2184,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
                     {r.cuisine} · {r.location} · {r.priceRange}
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: 16 }}>
+                <div className="rankings-mini-scores">
                   {["taste", "value", "atmosphere"].map((c) => (
                     <div key={c} style={{ textAlign: "center" }}>
                       <div
@@ -2206,7 +2247,7 @@ function ReviewersPage({ restaurants }) {
   const reviewed = restaurants.filter((r) => r.reviews[1].done && r.reviews[2].done);
 
   return (
-    <div className="fade-in" style={{ maxWidth: 1400, margin: "0 auto", padding: "60px 48px" }}>
+    <div className="fade-in page-wrap-wide">
       <div
         style={{
           fontFamily: "'DM Mono', monospace",
@@ -2224,7 +2265,7 @@ function ReviewersPage({ restaurants }) {
         The Reviewers
       </h1>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 60 }}>
+      <div className="reviewer-profile-grid">
         {REVIEWERS.map((rev) => (
           <div
             key={rev.id}
@@ -2471,13 +2512,11 @@ export default function App() {
         {page === "reviewers" && <ReviewersPage restaurants={restaurants} />}
 
         <footer
+          className="footer-inner"
           style={{
             background: "#1a1410",
-            padding: "40px 48px",
+            padding: "40px 5%",
             marginTop: 80,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
           }}
         >
           <div>
