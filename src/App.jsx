@@ -7,99 +7,85 @@ const REVIEWERS = [
 ];
 
 const INITIAL_RESTAURANTS = [
-  { id: 1, name: "Abundance", cuisine: "Northern Chinese", location: "Cleveland Heights", priceRange: "$$", visited: false, photos: ["🥟","🫙","🌶️"], coverEmoji: "🥟", tags: ["Dumplings","Modern Chinese","BYOB"],
+  { id: 1,  name: "Abundance",                           cuisine: "Northern Chinese",               location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🥟", tags: ["Dumplings","Modern Chinese","BYOB"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 2,  name: "Acqua di Dea",                        cuisine: "Italian Seafood",                location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🦞", tags: ["Seafood","Date Night","Wine Bar"],              reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 3,  name: "Amba",                                cuisine: "Indian-Inspired Small Plates",   location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🌙", tags: ["Small Plates","Cocktails","Vegetarian-Friendly"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 4,  name: "Bad Medicine",                        cuisine: "American / Vinyl Bar",           location: "West Park, Cleveland",        priceRange: "$$",   visited: false, photos: [], coverEmoji: "🎵", tags: ["Vinyl Bar","Cocktails","Date Night"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 5,  name: "Beet Jar",                            cuisine: "Vegan",                          location: "Hingetown / Shaker Heights",  priceRange: "$",    visited: false, photos: [], coverEmoji: "🥗", tags: ["Vegan","Sandwiches","Healthy"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 6,  name: "Batuqui",                             cuisine: "Brazilian Steakhouse",           location: "Larchmere / Chagrin Falls",   priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Brazilian","Special Occasion"],  reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 7,  name: "Cafe Everest",                        cuisine: "Nepalese / Indian",              location: "Bellaire-Puritas, Cleveland", priceRange: "$",    visited: false, photos: [], coverEmoji: "⛰️", tags: ["Dumplings","Nepalese","Casual"],              reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 8,  name: "Cent's Pizza & Goods",                cuisine: "Wood-Fired Pizza",               location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Pizza","Wood-Fired","Vibes"],                  reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 9,  name: "Cloak & Dagger",                      cuisine: "Vegan / Cocktail Lounge",        location: "Tremont",                     priceRange: "$$",   visited: false, photos: [], coverEmoji: "📚", tags: ["Vegan","Craft Cocktails","Literary"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 10, name: "Cordelia",                            cuisine: "Modern American",                location: "Downtown Cleveland",          priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍔", tags: ["Modern American","Brunch","Midwestern"],       reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 11, name: "Chez Francois",                       cuisine: "French",                         location: "Vermilion",                   priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🥂", tags: ["Fine Dining","French","Riverfront"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 12, name: "CleaveLand Grocers & Grill",          cuisine: "Pakistani / American",           location: "Midtown / Strongsville",      priceRange: "$$",   visited: false, photos: [], coverEmoji: "🫔", tags: ["Smash Burgers","Halal","Pakistani"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 13, name: "Coppia",                              cuisine: "Fine Dining Italian",            location: "Willoughby",                  priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🐚", tags: ["Fine Dining","Italian","Quiet Luxury"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 14, name: "Edwins Leadership & Restaurant Institute", cuisine: "French",                    location: "Cleveland Heights",           priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🎓", tags: ["Fine Dining","French","Social Impact"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 15, name: "Fahrenheit",                          cuisine: "Asian-Fusion / Steakhouse",      location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🔥", tags: ["Sushi","Steakhouse","Skyline Views"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 16, name: "Flour",                               cuisine: "Italian",                        location: "Brecksville / Moreland Hills", priceRange: "$$$", visited: false, photos: [], coverEmoji: "🌾", tags: ["Italian","Wood-Fired","Pasta"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 17, name: "Ginko",                               cuisine: "Sushi",                          location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍣", tags: ["Sushi","Omakase","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 18, name: "Good Company", cuisine: "American Diner", location: "Cleveland / Akron", priceRange: "$$", visited: true, photos: [], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],
     reviews: {
-      1: { done: true, description: "Liu Fang's dumplings are the real deal — four varieties served in chili oil, each one a different lesson in restraint and heat. The renovated diner car is now a proper dining room with intention. Start tame and work your way to the Sichuan pork sausage, as instructed.", taste: 9, value: 9, atmosphere: 8 },
-      2: { done: true, description: "Abundance earns every bit of its reputation. The Northern Chinese cooking is precise and personal — you can taste the family history in every fold. The renovated space is warm and unpretentious. The dumpling sampler in chili oil is compulsory ordering.", taste: 8, value: 9, atmosphere: 7 },
-      3: { done: true, description: "For the price you're paying, this place absolutely delivers. The dumplings punch above their weight and the room has genuine warmth to it. Value is off the charts. One of the best bang-for-your-buck meals in Cleveland Heights.", taste: 8, value: 10, atmosphere: 7 },
-    },
-    summary: "Abundance is the kind of restaurant that reminds you why food matters. Liu Fang's dumplings are exceptional and the space has real cultural depth. Don't skip the sampler — eat them in order." },
-  { id: 2, name: "Acqua di Dea", cuisine: "Italian Seafood", location: "Downtown Cleveland", priceRange: "$$$", visited: false, photos: ["🦀","🍷","🌊"], coverEmoji: "🦞", tags: ["Seafood","Date Night","Wine Bar"],
-    reviews: {
-      1: { done: true, description: "The setting alone is worth the trip — low lighting, century-old brick, and Terminal Tower glowing through the windows. The Ravioli di Granchio is serious pasta: jumbo lump crab, lemon zest, saffron cream. Sommelier-curated pairings elevate every course.", taste: 8, value: 7, atmosphere: 9 },
-      2: { done: true, description: "Italian seafood in Downtown Cleveland done with real conviction. The room is intimate and romantic without trying too hard. Owner Lola Jacaj clearly knows her wine — let her guide you. The crab ravioli is exceptional.", taste: 7, value: 6, atmosphere: 9 },
-      3: { done: true, description: "Gorgeous room, solid cooking, but the prices make you pause. For a special occasion it's worth every cent — for a regular Tuesday, maybe not. The cocktail program is underrated and the service is top tier.", taste: 7, value: 6, atmosphere: 9 },
-    },
-    summary: "Acqua di Dea captures downtown Cleveland at its most romantic. The Italian seafood menu is driven by technique and genuine hospitality. Best enjoyed slowly, with good wine and good company." },
-  { id: 3, name: "Amba", cuisine: "Indian-Inspired Small Plates", location: "Ohio City", priceRange: "$$", visited: false, photos: ["🫓","🌿","🍳"], coverEmoji: "🌙", tags: ["Small Plates","Cocktails","Vegetarian-Friendly"],
-    reviews: {
-      1: { done: true, description: "Douglas Katz has built something genuinely exciting here. The clay bread alone — blistered, soft, ready to drag through everything — is worth the visit. The Indian-leaning mezze format rewards adventurous ordering. The amber-lit room creates the right mood.", taste: 9, value: 8, atmosphere: 9 },
-      2: { done: true, description: "Amba is the most transportive dining room in Cleveland. Bold spices, clever contrasts, and a cocktail lounge that keeps pace with the food. The clay bread is non-negotiable. Build your table around three or four small plates.", taste: 8, value: 8, atmosphere: 9 },
-      3: { done: true, description: "The value here is exceptional for the quality of cooking you're getting. Small plates add up quick price-wise but every single one justifies the cost. The bar program is serious. One of the best rooms in the city full stop.", taste: 8, value: 8, atmosphere: 9 },
-    },
-    summary: "Amba earns its place at the top of Cleveland's small plates scene through sheer commitment to flavor and atmosphere. Douglas Katz has created a moody, flavor-forward room that rewards sharing. The clay bread will haunt you." },
-  { id: 4,  name: "Bad Medicine",                       cuisine: "American / Vinyl Bar",           location: "West Park, Cleveland",        priceRange: "$$",   visited: false, photos: [], coverEmoji: "🎵", tags: ["Vinyl Bar","Cocktails","Date Night"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 5,  name: "Beet Jar",                           cuisine: "Vegan",                          location: "Hingetown / Shaker Heights",  priceRange: "$",    visited: false, photos: [], coverEmoji: "🥗", tags: ["Vegan","Sandwiches","Healthy"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 6,  name: "Batuqui",                            cuisine: "Brazilian Steakhouse",           location: "Larchmere / Chagrin Falls",   priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Brazilian","Special Occasion"],  reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 7,  name: "Cafe Everest",                       cuisine: "Nepalese / Indian",              location: "Bellaire-Puritas, Cleveland", priceRange: "$",    visited: false, photos: [], coverEmoji: "⛰️", tags: ["Dumplings","Nepalese","Casual"],              reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 8,  name: "Cent's Pizza & Goods",               cuisine: "Wood-Fired Pizza",               location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Pizza","Wood-Fired","Vibes"],                  reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 9,  name: "Cloak & Dagger",                     cuisine: "Vegan / Cocktail Lounge",        location: "Tremont",                     priceRange: "$$",   visited: false, photos: [], coverEmoji: "📚", tags: ["Vegan","Craft Cocktails","Literary"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 10, name: "Cordelia",                           cuisine: "Modern American",                location: "Downtown Cleveland",          priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍔", tags: ["Modern American","Brunch","Midwestern"],       reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 11, name: "Chez Francois",                      cuisine: "French",                         location: "Vermilion",                   priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🥂", tags: ["Fine Dining","French","Riverfront"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 12, name: "CleaveLand Grocers & Grill",         cuisine: "Pakistani / American",           location: "Midtown / Strongsville",      priceRange: "$$",   visited: false, photos: [], coverEmoji: "🫔", tags: ["Smash Burgers","Halal","Pakistani"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 13, name: "Coppia",                             cuisine: "Fine Dining Italian",            location: "Willoughby",                  priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🐚", tags: ["Fine Dining","Italian","Quiet Luxury"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 14, name: "Edwins Leadership & Restaurant Institute", cuisine: "French",                   location: "Cleveland Heights",           priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🎓", tags: ["Fine Dining","French","Social Impact"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 15, name: "Fahrenheit",                         cuisine: "Asian-Fusion / Steakhouse",      location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🔥", tags: ["Sushi","Steakhouse","Skyline Views"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 16, name: "Flour",                              cuisine: "Italian",                        location: "Brecksville / Moreland Hills", priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌾", tags: ["Italian","Wood-Fired","Pasta"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 17, name: "Ginko",                              cuisine: "Sushi",                          location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍣", tags: ["Sushi","Omakase","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 18, name: "Good Company",                       cuisine: "American Diner",                 location: "Cleveland / Akron",           priceRange: "$$",   visited: true, photos: [], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],           reviews: {
-      1: { 
+      1: {
         done: true,
-        description: "Quite a hole in the wall place which is specially known for their 72 hour wings. Their wings live up to the hype, they are very tender and fall right off the bone (however a bit pricy $13 for 6 wings). Unfortunetly their burger and side of friend chicken skin do not live up to the greatness of their chicken wings.",
+        description: "Quite a hole in the wall place which is specially known for their 72 hour wings. Their wings live up to the hype, they are very tender and fall right off the bone (however a bit pricy $13 for 6 wings). Unfortunetly their burger and side of fried chicken skin do not live up to the greatness of their chicken wings.",
         taste: 7,
         value: 4,
         atmosphere: 5,
-      }, 
-    2: { 
-      done: true,
-      description: "coming soon",
-      taste: 6,
-      value: 4,
-      atmosphere: 6,
-    }, 
-      3: { done: false } }, summary: "" },
-  { id: 19, name: "Heart of Gold",                      cuisine: "American",                       location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "💛", tags: ["Smash Burger","Cocktails","Casual"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 20, name: "Il Rione",                           cuisine: "Neapolitan Pizza",               location: "Gordon Square, Cleveland",    priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Neapolitan Pizza","Rock n Roll","Date Night"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 21, name: "JoJo's Bar",                         cuisine: "Italian American Steakhouse",    location: "Chagrin Falls",               priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🕯️", tags: ["Steakhouse","Fresh Pasta","Celebrations"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 22, name: "Julia's 1902",                       cuisine: "Fine Dining / Global",           location: "Willoughby",                  priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🏛️", tags: ["Fine Dining","Historic Building","Date Night"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 23, name: "Juneberry Table",                    cuisine: "Seasonal Brunch",                location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🫐", tags: ["Brunch","Local Sourcing","Weekend"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 24, name: "Larder Delicatessen & Bakery",       cuisine: "Modern Jewish Deli",             location: "Hingetown",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🥪", tags: ["Deli","Koji","James Beard"],                   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 25, name: "The Last Page",                      cuisine: "Global Small Plates",            location: "Pinecrest, Orange",           priceRange: "$$$",  visited: false, photos: [], coverEmoji: "📖", tags: ["Small Plates","Craft Cocktails","Global"],    reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 26, name: "LJ Shanghai",                        cuisine: "Shanghainese",                   location: "AsiaTown, Cleveland",         priceRange: "$",    visited: false, photos: [], coverEmoji: "🥟", tags: ["Soup Dumplings","Noodles","Cash Only"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 27, name: "Locos Street Tacos & Burrito",       cuisine: "Mexican",                        location: "West Cleveland",              priceRange: "$",    visited: false, photos: [], coverEmoji: "🌮", tags: ["Birria","Street Tacos","Drive-Thru"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 28, name: "Mallorca",                           cuisine: "Spanish / Portuguese",           location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🦐", tags: ["Spanish","Paella","James Beard"],              reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 29, name: "Marble Room Steaks & Raw Bar",       cuisine: "American Steakhouse",            location: "Downtown Cleveland",          priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🏦", tags: ["Steakhouse","Art Deco","Historic"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 30, name: "Martha on the Fly",                  cuisine: "Breakfast / Brunch",             location: "Tremont",                     priceRange: "$",    visited: false, photos: [], coverEmoji: "🍳", tags: ["Breakfast","Takeout","Sandwiches"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 31, name: "Mason's Creamery",                   cuisine: "Ice Cream / Ramen",              location: "Ohio City",                   priceRange: "$",    visited: false, photos: [], coverEmoji: "🍦", tags: ["Ice Cream","Ramen","Seasonal"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 32, name: "Never Say Dive",                     cuisine: "Chef-Driven Bar Food",           location: "Old Brooklyn",                priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍺", tags: ["Bar Food","Cocktails","Neighborhood"],         reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 33, name: "Noble Beast Brewing Co.",            cuisine: "Brewery / American",             location: "Downtown Cleveland",          priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍻", tags: ["Craft Beer","Brewery","Farm-Fresh"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 34, name: "Ohio Pie Co.",                       cuisine: "Creative Pizza",                 location: "Brunswick / Parma / Rocky River", priceRange: "$$", visited: false, photos: [], coverEmoji: "🎨", tags: ["Creative Pizza","Ohio-Style","Weekly Specials"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 35, name: "Pier W",                             cuisine: "Seafood",                        location: "Lakewood",                    priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🌊", tags: ["Seafood","Lake Erie Views","Sunday Brunch"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 36, name: "The Pompadour",                      cuisine: "American Small Plates",          location: "Fairport Harbor",             priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌅", tags: ["Small Plates","Coastal","Shareable"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 37, name: "Pho Lee's Vietnamese Restaurant",    cuisine: "Vietnamese",                     location: "AsiaTown, Cleveland",         priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍜", tags: ["Pho","Vietnamese","24-Hour Broth"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 38, name: "Poppy",                              cuisine: "Modern American",                location: "Larchmere",                   priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌺", tags: ["Garden Patio","American","Seasonal"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 39, name: "Rood",                               cuisine: "Global / American",              location: "Lakewood",                    priceRange: "$$",   visited: false, photos: [], coverEmoji: "🎂", tags: ["Global Flavors","Dessert","Walleye"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 40, name: "Sapphire Creek Winery & Gardens",    cuisine: "American / Wine Bar",            location: "Chagrin Falls",               priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍷", tags: ["Winery","Steaks","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 41, name: "Slyman's Restaurant & Deli",         cuisine: "Classic Deli",                   location: "Downtown Cleveland",          priceRange: "$",    visited: false, photos: [], coverEmoji: "🥩", tags: ["Corned Beef","Institution","Lunch Only"],      reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 42, name: "STEAK",                              cuisine: "Modern Steakhouse",              location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Trendy","Waffle Fries"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 43, name: "Strip Steakhouse",                   cuisine: "Classic Steakhouse",             location: "Avon",                        priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🐮", tags: ["Steakhouse","Historic Barn","Dry-Aged"],       reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 44, name: "Thyme Table",                        cuisine: "Modern American",                location: "Bay Village",                 priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌿", tags: ["Seasonal","Wine","Patio"],                     reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 45, name: "Tita Flora's",                       cuisine: "Filipino",                       location: "Independence",                priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍛", tags: ["Filipino","Sizzling Plates","Family Style"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 46, name: "Tripi Italian Specialties",          cuisine: "Italian Deli",                   location: "Ohio City",                   priceRange: "$",    visited: false, photos: [], coverEmoji: "🍝", tags: ["Italian Deli","Sandwiches","Old School"],      reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 47, name: "Tutto Carne",                        cuisine: "Italian Steakhouse",             location: "Little Italy",                priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Little Italy","Nose-to-Tail"],    reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 48, name: "Vero",                               cuisine: "Neapolitan Pizza",               location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Neapolitan Pizza","Imported Wine","Gelato"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 49, name: "Zhug",                               cuisine: "Middle Eastern",                 location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🌿", tags: ["Middle Eastern","Mezze","No Reservations"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 50, name: "Zoma Ethiopian Restaurant",          cuisine: "Ethiopian",                      location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍚", tags: ["Ethiopian","Communal","Injera"],               reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+      },
+      2: {
+        done: true,
+        description: "coming soon",
+        taste: 6,
+        value: 4,
+        atmosphere: 6,
+      },
+      3: { done: false },
+    },
+    summary: "" },
+  { id: 19, name: "Heart of Gold",                       cuisine: "American",                       location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "💛", tags: ["Smash Burger","Cocktails","Casual"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 20, name: "Il Rione",                            cuisine: "Neapolitan Pizza",               location: "Gordon Square, Cleveland",    priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Neapolitan Pizza","Rock n Roll","Date Night"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 21, name: "JoJo's Bar",                          cuisine: "Italian American Steakhouse",    location: "Chagrin Falls",               priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🕯️", tags: ["Steakhouse","Fresh Pasta","Celebrations"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 22, name: "Julia's 1902",                        cuisine: "Fine Dining / Global",           location: "Willoughby",                  priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🏛️", tags: ["Fine Dining","Historic Building","Date Night"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 23, name: "Juneberry Table",                     cuisine: "Seasonal Brunch",                location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🫐", tags: ["Brunch","Local Sourcing","Weekend"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 24, name: "Larder Delicatessen & Bakery",        cuisine: "Modern Jewish Deli",             location: "Hingetown",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "🥪", tags: ["Deli","Koji","James Beard"],                   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 25, name: "The Last Page",                       cuisine: "Global Small Plates",            location: "Pinecrest, Orange",           priceRange: "$$$",  visited: false, photos: [], coverEmoji: "📖", tags: ["Small Plates","Craft Cocktails","Global"],    reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 26, name: "LJ Shanghai",                         cuisine: "Shanghainese",                   location: "AsiaTown, Cleveland",         priceRange: "$",    visited: false, photos: [], coverEmoji: "🥟", tags: ["Soup Dumplings","Noodles","Cash Only"],        reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 27, name: "Locos Street Tacos & Burrito",        cuisine: "Mexican",                        location: "West Cleveland",              priceRange: "$",    visited: false, photos: [], coverEmoji: "🌮", tags: ["Birria","Street Tacos","Drive-Thru"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 28, name: "Mallorca",                            cuisine: "Spanish / Portuguese",           location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🦐", tags: ["Spanish","Paella","James Beard"],              reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 29, name: "Marble Room Steaks & Raw Bar",        cuisine: "American Steakhouse",            location: "Downtown Cleveland",          priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🏦", tags: ["Steakhouse","Art Deco","Historic"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 30, name: "Martha on the Fly",                   cuisine: "Breakfast / Brunch",             location: "Tremont",                     priceRange: "$",    visited: false, photos: [], coverEmoji: "🍳", tags: ["Breakfast","Takeout","Sandwiches"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 31, name: "Mason's Creamery",                    cuisine: "Ice Cream / Ramen",              location: "Ohio City",                   priceRange: "$",    visited: false, photos: [], coverEmoji: "🍦", tags: ["Ice Cream","Ramen","Seasonal"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 32, name: "Never Say Dive",                      cuisine: "Chef-Driven Bar Food",           location: "Old Brooklyn",                priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍺", tags: ["Bar Food","Cocktails","Neighborhood"],         reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 33, name: "Noble Beast Brewing Co.",             cuisine: "Brewery / American",             location: "Downtown Cleveland",          priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍻", tags: ["Craft Beer","Brewery","Farm-Fresh"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 34, name: "Ohio Pie Co.",                        cuisine: "Creative Pizza",                 location: "Brunswick / Parma / Rocky River", priceRange: "$$", visited: false, photos: [], coverEmoji: "🎨", tags: ["Creative Pizza","Ohio-Style","Weekly Specials"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 35, name: "Pier W",                              cuisine: "Seafood",                        location: "Lakewood",                    priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🌊", tags: ["Seafood","Lake Erie Views","Sunday Brunch"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 36, name: "The Pompadour",                       cuisine: "American Small Plates",          location: "Fairport Harbor",             priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌅", tags: ["Small Plates","Coastal","Shareable"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 37, name: "Pho Lee's Vietnamese Restaurant",     cuisine: "Vietnamese",                     location: "AsiaTown, Cleveland",         priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍜", tags: ["Pho","Vietnamese","24-Hour Broth"],            reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 38, name: "Poppy",                               cuisine: "Modern American",                location: "Larchmere",                   priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌺", tags: ["Garden Patio","American","Seasonal"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 39, name: "Rood",                                cuisine: "Global / American",              location: "Lakewood",                    priceRange: "$$",   visited: false, photos: [], coverEmoji: "🎂", tags: ["Global Flavors","Dessert","Walleye"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 40, name: "Sapphire Creek Winery & Gardens",     cuisine: "American / Wine Bar",            location: "Chagrin Falls",               priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍷", tags: ["Winery","Steaks","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 41, name: "Slyman's Restaurant & Deli",          cuisine: "Classic Deli",                   location: "Downtown Cleveland",          priceRange: "$",    visited: false, photos: [], coverEmoji: "🥩", tags: ["Corned Beef","Institution","Lunch Only"],      reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 42, name: "STEAK",                               cuisine: "Modern Steakhouse",              location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Trendy","Waffle Fries"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 43, name: "Strip Steakhouse",                    cuisine: "Classic Steakhouse",             location: "Avon",                        priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🐮", tags: ["Steakhouse","Historic Barn","Dry-Aged"],       reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 44, name: "Thyme Table",                         cuisine: "Modern American",                location: "Bay Village",                 priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌿", tags: ["Seasonal","Wine","Patio"],                     reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 45, name: "Tita Flora's",                        cuisine: "Filipino",                       location: "Independence",                priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍛", tags: ["Filipino","Sizzling Plates","Family Style"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 46, name: "Tripi Italian Specialties",           cuisine: "Italian Deli",                   location: "Ohio City",                   priceRange: "$",    visited: false, photos: [], coverEmoji: "🍝", tags: ["Italian Deli","Sandwiches","Old School"],      reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 47, name: "Tutto Carne",                         cuisine: "Italian Steakhouse",             location: "Little Italy",                priceRange: "$$$$", visited: false, photos: [], coverEmoji: "🥩", tags: ["Steakhouse","Little Italy","Nose-to-Tail"],    reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 48, name: "Vero",                                cuisine: "Neapolitan Pizza",               location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Neapolitan Pizza","Imported Wine","Gelato"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 49, name: "Zhug",                                cuisine: "Middle Eastern",                 location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🌿", tags: ["Middle Eastern","Mezze","No Reservations"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 50, name: "Zoma Ethiopian Restaurant",           cuisine: "Ethiopian",                      location: "Cleveland Heights",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍚", tags: ["Ethiopian","Communal","Injera"],               reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
 ];
-
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function avg3(a, b, c) { return ((a + b + c) / 3).toFixed(1); }
 
+function avgDone(r, cat) {
+  const scores = [1,2,3].filter(id => r.reviews[id] && r.reviews[id].done).map(id => r.reviews[id][cat]);
+  return (scores.reduce((s,v) => s+v, 0) / scores.length).toFixed(1);
+}
+
 function overallAvg(r) {
-  const vals = ["taste","value","atmosphere"].map(cat =>
-    parseFloat(avg3(r.reviews[1][cat], r.reviews[2][cat], r.reviews[3][cat]))
-  );
+  const vals = ["taste","value","atmosphere"].map(cat => parseFloat(avgDone(r, cat)));
   return (vals.reduce((s,v) => s+v, 0) / 3).toFixed(1);
 }
 
@@ -132,8 +118,6 @@ function SectionTitle({ children }) {
   );
 }
 
-// ─── STYLES ──────────────────────────────────────────────────────────────────
-
 const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500;700&display=swap');`;
 
 const GLOBAL_CSS = `
@@ -141,53 +125,38 @@ const GLOBAL_CSS = `
   html, body, #root { width: 100%; }
   body { background: #f5f0e8; color: #1a1410; overflow-x: hidden; -webkit-text-size-adjust: 100%; }
   .app-shell { width: 100%; min-height: 100vh; }
-
   .nav { background: #1a1410; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.3); width: 100%; }
   .nav-link { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #c8b89a; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border-bottom: 2px solid transparent; padding: 4px 0; transition: color 0.15s; }
   .nav-link:hover, .nav-link.active { color: #C8472C; border-bottom-color: #C8472C; }
-
   .hero { background: linear-gradient(135deg, #1a1410 0%, #2d1f17 50%, #1a1410 100%); padding: 80px 24px 60px; width: 100%; position: relative; overflow: hidden; }
-
   .stats-bar { background: #C8472C; padding: 20px 24px; display: flex; width: 100%; }
   .stat-item { flex: 1; text-align: center; }
-
   .page { width: 100%; padding: 40px 24px; }
-
   .card { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; }
   .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
   .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .grid-3-rev { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
   .checklist-row { display: flex; align-items: center; gap: 12px; padding: 16px 12px; border-bottom: 1px solid #ede8e0; cursor: pointer; transition: background 0.15s; }
   .checklist-row:hover { background: #ede8e0; }
-
   .status-bar { background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; margin-bottom: 32px; }
   .status-item { display: flex; align-items: center; gap: 8px; padding: 12px 16px; flex: 1; min-width: 130px; border-right: 1px solid #ede8e0; }
   .status-item:last-child { border-right: none; }
-
   .score-row { display: flex; align-items: flex-start; gap: 20px; padding: 24px; }
   .score-label { width: 150px; flex-shrink: 0; }
-
   .ranking-row { background: #fff; padding: 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 10px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
   .ranking-row:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-
   .sort-tabs { display: flex; border: 1px solid #ede8e0; overflow: hidden; margin-bottom: 32px; }
   .sort-tab { flex: 1; background: #fff; color: #6a5a4a; border: none; padding: 13px 6px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.15s; }
   .sort-tab.active { background: #1a1410; color: #f5f0e8; }
-
   .filter-tabs { display: flex; border-bottom: 2px solid #ede8e0; margin-bottom: 24px; }
   .filter-tab { background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; padding: 10px 18px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; color: #6a5a4a; cursor: pointer; }
   .filter-tab.active { color: #C8472C; border-bottom-color: #C8472C; }
-
   .fade-in { animation: fadeIn 0.4s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #ede8e0; }
   ::-webkit-scrollbar-thumb { background: #c8b89a; border-radius: 3px; }
-
   @media (max-width: 900px) {
     .grid-3 { grid-template-columns: 1fr 1fr; }
     .grid-3-rev { grid-template-columns: 1fr 1fr; }
@@ -213,8 +182,6 @@ const GLOBAL_CSS = `
   }
 `;
 
-// ─── NAV ─────────────────────────────────────────────────────────────────────
-
 function Nav({ page, setPage }) {
   return (
     <nav className="nav">
@@ -234,13 +201,10 @@ function Nav({ page, setPage }) {
   );
 }
 
-// ─── HOME ────────────────────────────────────────────────────────────────────
-
 function HomePage({ restaurants, setPage, setSelectedId }) {
-  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done && r.reviews[3].done);
+  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done);
   const topPick = reviewed.length ? [...reviewed].sort((a,b) => parseFloat(overallAvg(b)) - parseFloat(overallAvg(a)))[0] : null;
   const recent = reviewed.slice(0, 3);
-
   return (
     <div className="fade-in">
       <div className="hero">
@@ -259,7 +223,6 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
           </div>
         </div>
       </div>
-
       <div className="stats-bar">
         {[["50","On the List"],[String(reviewed.length),"Fully Reviewed"],[String(50-reviewed.length),"Still to Visit"]].map(([val,label]) => (
           <div key={label} className="stat-item">
@@ -268,7 +231,6 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
           </div>
         ))}
       </div>
-
       <div className="page">
         {topPick && (
           <div style={{ marginBottom: 48 }}>
@@ -288,7 +250,6 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             </div>
           </div>
         )}
-
         {recent.length > 0 && (
           <div>
             <SectionTitle>Recent Reviews</SectionTitle>
@@ -312,7 +273,6 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             </div>
           </div>
         )}
-
         {reviewed.length === 0 && (
           <div className="card" style={{ padding: 60, textAlign: "center" }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🗺️</div>
@@ -325,38 +285,31 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
   );
 }
 
-// ─── CHECKLIST ───────────────────────────────────────────────────────────────
-
 function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const filtered = restaurants.filter(r => {
-    const allDone = r.reviews[1].done && r.reviews[2].done && r.reviews[3].done;
-    const anyDone = r.reviews[1].done || r.reviews[2].done || r.reviews[3].done;
+    const allDone = r.reviews[1].done && r.reviews[2].done;
     const matchFilter = filter === "all" || (filter === "reviewed" && allDone) || (filter === "pending" && !allDone);
     const matchSearch = !search || r.name.toLowerCase().includes(search.toLowerCase()) || r.cuisine.toLowerCase().includes(search.toLowerCase()) || r.location.toLowerCase().includes(search.toLowerCase());
     return matchFilter && matchSearch;
   });
-
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ THE MASTER LIST</div>
       <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 6, color: "#1a1410" }}>Restaurant Checklist</h1>
       <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#6a5a4a", marginBottom: 22, fontSize: 15 }}>Cleveland Magazine's 50 Best — working through every one.</p>
-
       <input type="text" placeholder="Search by name, cuisine or location…" value={search} onChange={e => setSearch(e.target.value)}
         style={{ width: "100%", padding: "10px 14px", fontFamily: "'DM Sans', sans-serif", fontSize: 14, border: "1px solid #ded8d0", background: "#fff", outline: "none", color: "#1a1410", marginBottom: 18, display: "block" }} />
-
       <div className="filter-tabs">
         {[["all","All 50"],["reviewed","Reviewed"],["pending","Pending"]].map(([key,label]) => (
           <button key={key} className={`filter-tab${filter === key ? " active" : ""}`} onClick={() => setFilter(key)}>{label}</button>
         ))}
         <div style={{ marginLeft: "auto", fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#9a8a7a", display: "flex", alignItems: "center", paddingRight: 8 }}>{filtered.length} shown</div>
       </div>
-
       <div>
         {filtered.map((r, i) => {
-          const allDone = r.reviews[1].done && r.reviews[2].done && r.reviews[3].done;
+          const allDone = r.reviews[1].done && r.reviews[2].done;
           const score = allDone ? overallAvg(r) : null;
           return (
             <div key={r.id} className="checklist-row" onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}
@@ -391,18 +344,15 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   );
 }
 
-// ─── RESTAURANT PAGE ──────────────────────────────────────────────────────────
-
 function RestaurantPage({ restaurant, setPage }) {
   if (!restaurant) return null;
   const r = restaurant;
-  const allDone = r.reviews[1].done && r.reviews[2].done && r.reviews[3].done;
+  const allDone = r.reviews[1].done && r.reviews[2].done;
   const cats = [
     { key: "taste",      label: "Taste",      icon: "🍴", desc: "How does the food actually taste?" },
     { key: "value",      label: "Value",      icon: "⭐", desc: "Are you getting your money's worth?" },
     { key: "atmosphere", label: "Atmosphere", icon: "🕯️", desc: "Does the room match the food?" },
   ];
-
   return (
     <div className="fade-in">
       <div style={{ background: "#1a1410", padding: "48px 24px 40px", position: "relative", overflow: "hidden" }}>
@@ -412,7 +362,7 @@ function RestaurantPage({ restaurant, setPage }) {
           <div className="res-header-inner" style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
             <div style={{ fontSize: 64, lineHeight: 1, flexShrink: 0 }}>{r.coverEmoji}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.25em", marginBottom: 8 }}>#{String(r.id).padStart(2,"0")} · {r.cuisine} · {r.location} · {r.priceRange}</div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.25em", marginBottom: 8 }}>#{String(r.id).padStart(2,"00")} · {r.cuisine} · {r.location} · {r.priceRange}</div>
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(24px, 5vw, 50px)", fontWeight: 900, color: "#f5f0e8", marginBottom: 12, wordBreak: "break-word" }}>{r.name}</h1>
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                 {r.tags.map(t => <span key={t} style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, color: "#c8b89a", border: "1px solid rgba(200,184,154,0.4)", padding: "3px 8px" }}>{t}</span>)}
@@ -427,16 +377,14 @@ function RestaurantPage({ restaurant, setPage }) {
           </div>
         </div>
       </div>
-
       <div className="page">
-        {/* Status Bar */}
         <div className="status-bar">
           {[
-            { label: "Visited",                  done: r.visited },
-            { label: `${REVIEWERS[0].name}`,     done: r.reviews[1].done, color: REVIEWERS[0].color },
-            { label: `${REVIEWERS[1].name}`,     done: r.reviews[2].done, color: REVIEWERS[1].color },
-            { label: `${REVIEWERS[2].name}`,     done: r.reviews[3].done, color: REVIEWERS[2].color },
-            { label: "Complete",                 done: allDone },
+            { label: "Visited",              done: r.visited },
+            { label: REVIEWERS[0].name,      done: r.reviews[1].done, color: REVIEWERS[0].color },
+            { label: REVIEWERS[1].name,      done: r.reviews[2].done, color: REVIEWERS[1].color },
+            { label: REVIEWERS[2].name,      done: r.reviews[3].done, color: REVIEWERS[2].color },
+            { label: "Complete",             done: allDone },
           ].map(s => (
             <div key={s.label} className="status-item">
               <div style={{ width: 20, height: 20, borderRadius: "50%", background: s.done ? (s.color || "#2a9d2a") : "#e8e0d4", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "#fff", flexShrink: 0 }}>{s.done ? "✓" : ""}</div>
@@ -444,28 +392,24 @@ function RestaurantPage({ restaurant, setPage }) {
             </div>
           ))}
         </div>
-
-        {/* Photos */}
         {r.photos.length > 0 && (
           <div style={{ marginBottom: 40 }}>
             <SectionTitle>Photos</SectionTitle>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               {r.photos.map((p,i) => (
-  <div key={i} style={{ flex: "1 1 160px", minWidth: 160, height: 200, overflow: "hidden" }}>
-    <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-  </div>
-))}
-              <div style={{ flex: "1 1 80px", minWidth: 80, background: "#ede8e0", height: 140, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4, border: "2px dashed #c8b89a" }}>
+                <div key={i} style={{ flex: "1 1 160px", minWidth: 160, height: 200, overflow: "hidden" }}>
+                  <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              ))}
+              <div style={{ flex: "1 1 80px", minWidth: 80, background: "#ede8e0", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4, border: "2px dashed #c8b89a" }}>
                 <span style={{ fontSize: 20, color: "#c8b89a" }}>+</span>
                 <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#c8b89a" }}>ADD PHOTO</span>
               </div>
             </div>
           </div>
         )}
-
         {allDone ? (
           <>
-            {/* Reviewer Impressions */}
             <div style={{ marginBottom: 40 }}>
               <SectionTitle>Reviewer Impressions</SectionTitle>
               <div className="grid-3-rev">
@@ -483,8 +427,6 @@ function RestaurantPage({ restaurant, setPage }) {
                 ))}
               </div>
             </div>
-
-            {/* Scores */}
             <div style={{ marginBottom: 40 }}>
               <SectionTitle>Category Scores</SectionTitle>
               {cats.map((cat, ci) => (
@@ -510,7 +452,7 @@ function RestaurantPage({ restaurant, setPage }) {
                     </div>
                     <div style={{ textAlign: "center", background: "#1a1410", padding: "14px 18px", flexShrink: 0, minWidth: 66 }}>
                       <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 900, color: "#f5f0e8", lineHeight: 1 }}>
-                        {avg3(r.reviews[1][cat.key], r.reviews[2][cat.key], r.reviews[3][cat.key])}
+                        {avgDone(r, cat.key)}
                       </div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#C8472C", letterSpacing: "0.1em", marginTop: 4 }}>AVG</div>
                     </div>
@@ -518,8 +460,6 @@ function RestaurantPage({ restaurant, setPage }) {
                 </div>
               ))}
             </div>
-
-            {/* Verdict */}
             {r.summary && (
               <div>
                 <SectionTitle>Our Verdict</SectionTitle>
@@ -545,16 +485,13 @@ function RestaurantPage({ restaurant, setPage }) {
   );
 }
 
-// ─── RANKINGS ────────────────────────────────────────────────────────────────
-
 function RankingsPage({ restaurants, setPage, setSelectedId }) {
   const [sortBy, setSortBy] = useState("overall");
-  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done && r.reviews[3].done);
+  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done);
   const sorted = [...reviewed].sort((a, b) => {
-    const get = r => sortBy === "overall" ? parseFloat(overallAvg(r)) : parseFloat(avg3(r.reviews[1][sortBy], r.reviews[2][sortBy], r.reviews[3][sortBy]));
+    const get = r => sortBy === "overall" ? parseFloat(overallAvg(r)) : parseFloat(avgDone(r, sortBy));
     return get(b) - get(a);
   });
-
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ THE LEADERBOARD</div>
@@ -572,7 +509,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
           <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#9a8a7a", fontSize: 15 }}>No reviews yet — get eating!</p>
         </div>
       ) : sorted.map((r, i) => {
-        const displayScore = sortBy === "overall" ? overallAvg(r) : avg3(r.reviews[1][sortBy], r.reviews[2][sortBy], r.reviews[3][sortBy]);
+        const displayScore = sortBy === "overall" ? overallAvg(r) : avgDone(r, sortBy);
         const badge = scoreBadge(displayScore);
         return (
           <div key={r.id} className="ranking-row" onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}
@@ -586,7 +523,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
             <div className="mini-scores" style={{ display: "flex", gap: 14 }}>
               {["taste","value","atmosphere"].map(c => (
                 <div key={c} style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700, color: c === sortBy ? "#C8472C" : "#1a1410" }}>{avg3(r.reviews[1][c], r.reviews[2][c], r.reviews[3][c])}</div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700, color: c === sortBy ? "#C8472C" : "#1a1410" }}>{avgDone(r, c)}</div>
                   <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#9a8a7a", letterSpacing: "0.1em", textTransform: "uppercase" }}>{c}</div>
                 </div>
               ))}
@@ -602,10 +539,8 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
   );
 }
 
-// ─── REVIEWERS ────────────────────────────────────────────────────────────────
-
 function ReviewersPage({ restaurants }) {
-  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done && r.reviews[3].done);
+  const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done);
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ MEET THE CRITICS</div>
@@ -636,7 +571,6 @@ function ReviewersPage({ restaurants }) {
           </div>
         ))}
       </div>
-
       {reviewed.length > 0 && (
         <div>
           <SectionTitle>Score Comparison</SectionTitle>
@@ -653,7 +587,7 @@ function ReviewersPage({ restaurants }) {
                     <td style={{ padding: "8px 9px", fontFamily: "'Playfair Display', serif", fontSize: 13, fontWeight: 700, color: "#1a1410", borderBottom: "1px solid #ede8e0" }}>{ci === 0 ? r.name : ""}</td>
                     <td style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#9a8a7a", textTransform: "capitalize", borderBottom: "1px solid #ede8e0" }}>{cat}</td>
                     {[1,2,3].map(rid => <td key={rid} style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: REVIEWERS[rid-1].color, borderBottom: "1px solid #ede8e0" }}>{r.reviews[rid][cat]}</td>)}
-                    <td style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: "#1a1410", borderBottom: "1px solid #ede8e0" }}>{avg3(r.reviews[1][cat], r.reviews[2][cat], r.reviews[3][cat])}</td>
+                    <td style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: "#1a1410", borderBottom: "1px solid #ede8e0" }}>{avgDone(r, cat)}</td>
                   </tr>
                 )))}
               </tbody>
@@ -665,14 +599,11 @@ function ReviewersPage({ restaurants }) {
   );
 }
 
-// ─── APP ──────────────────────────────────────────────────────────────────────
-
 export default function App() {
   const [page, setPage] = useState("home");
   const [selectedId, setSelectedId] = useState(null);
   const [restaurants] = useState(INITIAL_RESTAURANTS);
   const selected = restaurants.find(r => r.id === selectedId) || null;
-
   return (
     <>
       <style>{FONTS + GLOBAL_CSS}</style>
