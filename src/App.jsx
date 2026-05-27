@@ -187,10 +187,57 @@ const GLOBAL_CSS = `
   }
 `;
 
-function Nav({ page, setPage }) {
+function PhotoSection({ photos, name }) {
+  const [active, setActive] = useState(null);
+  return (
+    <div style={{ marginBottom: 40 }}>
+      <SectionTitle>Photos</SectionTitle>
+      <div className="photo-grid">
+        {photos.map((p, i) => (
+          <div key={i} onClick={() => setActive(p)} style={{ cursor: "zoom-in" }}>
+            <img src={p} alt={`${name} photo ${i + 1}`} style={{ display: "block", width: "100%", height: "auto", borderRadius: 2 }} />
+          </div>
+        ))}
+      </div>
+      {active && (
+        <div
+          onClick={() => setActive(null)}
+          style={{
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            zIndex: 1000, padding: 20, cursor: "zoom-out",
+          }}
+        >
+          <button
+            onClick={() => setActive(null)}
+            style={{
+              position: "absolute", top: 20, right: 24,
+              background: "none", border: "1px solid rgba(255,255,255,0.3)",
+              color: "#fff", fontSize: 22, lineHeight: 1, padding: "4px 12px",
+              cursor: "pointer", fontFamily: "'DM Mono', monospace",
+            }}
+          >✕</button>
+          <img
+            src={active}
+            alt=""
+            onClick={e => e.stopPropagation()}
+            style={{
+              maxWidth: "90vw", maxHeight: "88vh",
+              width: "auto", height: "auto",
+              objectFit: "contain", display: "block",
+              boxShadow: "0 8px 60px rgba(0,0,0,0.6)",
+            }}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Nav({ page, navigate }) {
   return (
     <nav className="nav">
-      <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", flexShrink: 0 }} onClick={() => setPage("home")}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", flexShrink: 0 }} onClick={() => navigate("home")}>
         <span style={{ fontSize: 20 }}>🍽️</span>
         <div>
           <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 900, color: "#f5f0e8", lineHeight: 1 }}>The Table</div>
@@ -199,14 +246,14 @@ function Nav({ page, setPage }) {
       </div>
       <div style={{ display: "flex", gap: 20 }}>
         {[["home","Home"],["checklist","Restaurants"],["rankings","Rankings"],["reviewers","Reviewers"]].map(([key, label]) => (
-          <span key={key} className={`nav-link${page === key ? " active" : ""}`} onClick={() => setPage(key)}>{label}</span>
+          <span key={key} className={`nav-link${page === key ? " active" : ""}`} onClick={() => navigate(key)}>{label}</span>
         ))}
       </div>
     </nav>
   );
 }
 
-function HomePage({ restaurants, setPage, setSelectedId }) {
+function HomePage({ restaurants, navigate }) {
   const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done);
   const topPick = reviewed.length ? [...reviewed].sort((a,b) => parseFloat(overallAvg(b)) - parseFloat(overallAvg(a)))[0] : null;
   const recent = reviewed.slice(0, 3);
@@ -223,8 +270,8 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             Isaac, Andres, and Carter work through Cleveland Magazine's 50 Best — scored on Taste, Value, and Atmosphere. No ads, no comps.
           </p>
           <div className="hero-btns" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button onClick={() => setPage("checklist")} style={{ background: "#C8472C", color: "#fff", border: "none", padding: "13px 28px", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>Browse the List →</button>
-            <button onClick={() => setPage("rankings")} style={{ background: "transparent", color: "#f5f0e8", border: "1px solid rgba(245,240,232,0.3)", padding: "13px 28px", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: 14, cursor: "pointer" }}>See Rankings</button>
+            <button onClick={() => navigate("checklist")} style={{ background: "#C8472C", color: "#fff", border: "none", padding: "13px 28px", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, cursor: "pointer" }}>Browse the List →</button>
+            <button onClick={() => navigate("rankings")} style={{ background: "transparent", color: "#f5f0e8", border: "1px solid rgba(245,240,232,0.3)", padding: "13px 28px", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: 14, cursor: "pointer" }}>See Rankings</button>
           </div>
         </div>
       </div>
@@ -240,7 +287,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
         {topPick && (
           <div style={{ marginBottom: 48 }}>
             <SectionTitle>Current Top Pick</SectionTitle>
-            <div className="card card-hover top-pick-inner" onClick={() => { setSelectedId(topPick.id); setPage("restaurant"); }}
+            <div className="card card-hover top-pick-inner" onClick={() => navigate("restaurant", topPick.id)}
               style={{ display: "flex", gap: 28, alignItems: "center", padding: 28, background: "#1a1410", color: "#f5f0e8" }}>
               <div style={{ fontSize: 60, lineHeight: 1, flexShrink: 0 }}>{topPick.coverEmoji}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -260,7 +307,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
             <SectionTitle>Recent Reviews</SectionTitle>
             <div className="grid-3">
               {recent.map(r => (
-                <div key={r.id} className="card card-hover" onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}>
+                <div key={r.id} className="card card-hover" onClick={() => navigate("restaurant", r.id)}>
                   <div style={{ background: "#1a1410", padding: 28, textAlign: "center", fontSize: 48 }}>{r.coverEmoji}</div>
                   <div style={{ padding: 18 }}>
                     <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#9a8a7a", letterSpacing: "0.1em", marginBottom: 5 }}>{r.cuisine}</div>
@@ -290,7 +337,7 @@ function HomePage({ restaurants, setPage, setSelectedId }) {
   );
 }
 
-function ChecklistPage({ restaurants, setPage, setSelectedId }) {
+function ChecklistPage({ restaurants, navigate }) {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const filtered = restaurants.filter(r => {
@@ -317,7 +364,7 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
           const allDone = r.reviews[1].done && r.reviews[2].done;
           const score = allDone ? overallAvg(r) : null;
           return (
-            <div key={r.id} className="checklist-row" onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}
+            <div key={r.id} className="checklist-row" onClick={() => navigate("restaurant", r.id)}
               style={{ background: i % 2 === 0 ? "#fff" : "transparent" }}>
               <div style={{ width: 24, height: 24, border: `2px solid ${allDone ? "#2a9d2a" : "#c8b89a"}`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, background: allDone ? "#2a9d2a" : "transparent" }}>
                 {allDone && <span style={{ color: "#fff", fontSize: 12 }}>✓</span>}
@@ -349,7 +396,7 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   );
 }
 
-function RestaurantPage({ restaurant, setPage }) {
+function RestaurantPage({ restaurant, navigate }) {
   if (!restaurant) return null;
   const r = restaurant;
   const allDone = r.reviews[1].done && r.reviews[2].done;
@@ -363,7 +410,7 @@ function RestaurantPage({ restaurant, setPage }) {
       <div style={{ background: "#1a1410", padding: "48px 24px 40px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 80% 50%, ${REVIEWERS[0].color}15, transparent 60%)` }} />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <button onClick={() => setPage("checklist")} style={{ background: "none", border: "1px solid rgba(255,255,255,0.2)", color: "#a09080", padding: "6px 14px", fontFamily: "'DM Mono', monospace", fontSize: 10, cursor: "pointer", marginBottom: 24 }}>← Back to List</button>
+          <button onClick={() => navigate("checklist")} style={{ background: "none", border: "1px solid rgba(255,255,255,0.2)", color: "#a09080", padding: "6px 14px", fontFamily: "'DM Mono', monospace", fontSize: 10, cursor: "pointer", marginBottom: 24 }}>← Back to List</button>
           <div className="res-header-inner" style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
             <div style={{ fontSize: 64, lineHeight: 1, flexShrink: 0 }}>{r.coverEmoji}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -398,18 +445,9 @@ function RestaurantPage({ restaurant, setPage }) {
           ))}
         </div>
 
-        {/* PHOTOS — no cropping, clickable, no add photo box */}
+        {/* PHOTOS — lightbox on click */}
         {r.photos.length > 0 && (
-          <div style={{ marginBottom: 40 }}>
-            <SectionTitle>Photos</SectionTitle>
-            <div className="photo-grid">
-              {r.photos.map((p, i) => (
-                <a key={i} href={p} target="_blank" rel="noreferrer">
-                  <img src={p} alt={`${r.name} photo ${i + 1}`} />
-                </a>
-              ))}
-            </div>
-          </div>
+          <PhotoSection photos={r.photos} name={r.name} />
         )}
 
         {allDone ? (
@@ -487,7 +525,7 @@ function RestaurantPage({ restaurant, setPage }) {
   );
 }
 
-function RankingsPage({ restaurants, setPage, setSelectedId }) {
+function RankingsPage({ restaurants, navigate }) {
   const [sortBy, setSortBy] = useState("overall");
   const reviewed = restaurants.filter(r => r.reviews[1].done && r.reviews[2].done);
   const sorted = [...reviewed].sort((a, b) => {
@@ -514,7 +552,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
         const displayScore = sortBy === "overall" ? overallAvg(r) : avgDone(r, sortBy);
         const badge = scoreBadge(displayScore);
         return (
-          <div key={r.id} className="ranking-row" onClick={() => { setSelectedId(r.id); setPage("restaurant"); }}
+          <div key={r.id} className="ranking-row" onClick={() => navigate("restaurant", r.id)}
             style={{ border: i === 0 ? "1px solid rgba(200,71,44,0.3)" : "1px solid #f0ece4", boxShadow: i === 0 ? "0 4px 20px rgba(200,71,44,0.12)" : "0 1px 6px rgba(0,0,0,0.04)" }}>
             <div style={{ width: 38, height: 38, background: i === 0 ? "#C8472C" : "#f5f0e8", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Playfair Display', serif", fontSize: 17, fontWeight: 900, color: i === 0 ? "#fff" : "#9a8a7a", flexShrink: 0 }}>{i+1}</div>
             <span style={{ fontSize: 30, flexShrink: 0 }}>{r.coverEmoji}</span>
@@ -606,15 +644,37 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [restaurants] = useState(INITIAL_RESTAURANTS);
   const selected = restaurants.find(r => r.id === selectedId) || null;
+
+  const navigate = (newPage, id) => {
+    window.history.pushState({ page: newPage, selectedId: id ?? selectedId }, "");
+    setPage(newPage);
+    if (id !== undefined) setSelectedId(id);
+    window.scrollTo(0, 0);
+  };
+
+  useState(() => {
+    const onPop = (e) => {
+      if (e.state) {
+        setPage(e.state.page || "home");
+        setSelectedId(e.state.selectedId ?? null);
+      } else {
+        setPage("home");
+      }
+    };
+    window.addEventListener("popstate", onPop);
+    window.history.replaceState({ page: "home", selectedId: null }, "");
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
   return (
     <>
       <style>{FONTS + GLOBAL_CSS}</style>
       <div className="app-shell">
-        <Nav page={page} setPage={setPage} />
-        {page === "home"       && <HomePage       restaurants={restaurants} setPage={setPage} setSelectedId={setSelectedId} />}
-        {page === "checklist"  && <ChecklistPage  restaurants={restaurants} setPage={setPage} setSelectedId={setSelectedId} />}
-        {page === "restaurant" && <RestaurantPage restaurant={selected} setPage={setPage} />}
-        {page === "rankings"   && <RankingsPage   restaurants={restaurants} setPage={setPage} setSelectedId={setSelectedId} />}
+        <Nav page={page} navigate={navigate} />
+        {page === "home"       && <HomePage       restaurants={restaurants} navigate={navigate} />}
+        {page === "checklist"  && <ChecklistPage  restaurants={restaurants} navigate={navigate} />}
+        {page === "restaurant" && <RestaurantPage restaurant={selected} navigate={navigate} />}
+        {page === "rankings"   && <RankingsPage   restaurants={restaurants} navigate={navigate} />}
         {page === "reviewers"  && <ReviewersPage  restaurants={restaurants} />}
         <footer style={{ background: "#1a1410", padding: "28px 24px", marginTop: 56, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, width: "100%" }}>
           <div>
