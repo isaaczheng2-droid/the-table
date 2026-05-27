@@ -7,21 +7,21 @@ const REVIEWERS = [
 ];
 
 const INITIAL_RESTAURANTS = [
-  { id: 1, name: "Abundance", cuisine: "Northern Chinese", location: "Cleveland Heights", priceRange: "$$", visited: true, photos: ["🥟","🫙","🌶️"], coverEmoji: "🥟", tags: ["Dumplings","Modern Chinese","BYOB"],
+  { id: 1, name: "Abundance", cuisine: "Northern Chinese", location: "Cleveland Heights", priceRange: "$$", visited: false, photos: ["🥟","🫙","🌶️"], coverEmoji: "🥟", tags: ["Dumplings","Modern Chinese","BYOB"],
     reviews: {
       1: { done: true, description: "Liu Fang's dumplings are the real deal — four varieties served in chili oil, each one a different lesson in restraint and heat. The renovated diner car is now a proper dining room with intention. Start tame and work your way to the Sichuan pork sausage, as instructed.", taste: 9, value: 9, atmosphere: 8 },
       2: { done: true, description: "Abundance earns every bit of its reputation. The Northern Chinese cooking is precise and personal — you can taste the family history in every fold. The renovated space is warm and unpretentious. The dumpling sampler in chili oil is compulsory ordering.", taste: 8, value: 9, atmosphere: 7 },
       3: { done: true, description: "For the price you're paying, this place absolutely delivers. The dumplings punch above their weight and the room has genuine warmth to it. Value is off the charts. One of the best bang-for-your-buck meals in Cleveland Heights.", taste: 8, value: 10, atmosphere: 7 },
     },
     summary: "Abundance is the kind of restaurant that reminds you why food matters. Liu Fang's dumplings are exceptional and the space has real cultural depth. Don't skip the sampler — eat them in order." },
-  { id: 2, name: "Acqua di Dea", cuisine: "Italian Seafood", location: "Downtown Cleveland", priceRange: "$$$", visited: true, photos: ["🦀","🍷","🌊"], coverEmoji: "🦞", tags: ["Seafood","Date Night","Wine Bar"],
+  { id: 2, name: "Acqua di Dea", cuisine: "Italian Seafood", location: "Downtown Cleveland", priceRange: "$$$", visited: false, photos: ["🦀","🍷","🌊"], coverEmoji: "🦞", tags: ["Seafood","Date Night","Wine Bar"],
     reviews: {
       1: { done: true, description: "The setting alone is worth the trip — low lighting, century-old brick, and Terminal Tower glowing through the windows. The Ravioli di Granchio is serious pasta: jumbo lump crab, lemon zest, saffron cream. Sommelier-curated pairings elevate every course.", taste: 8, value: 7, atmosphere: 9 },
       2: { done: true, description: "Italian seafood in Downtown Cleveland done with real conviction. The room is intimate and romantic without trying too hard. Owner Lola Jacaj clearly knows her wine — let her guide you. The crab ravioli is exceptional.", taste: 7, value: 6, atmosphere: 9 },
       3: { done: true, description: "Gorgeous room, solid cooking, but the prices make you pause. For a special occasion it's worth every cent — for a regular Tuesday, maybe not. The cocktail program is underrated and the service is top tier.", taste: 7, value: 6, atmosphere: 9 },
     },
     summary: "Acqua di Dea captures downtown Cleveland at its most romantic. The Italian seafood menu is driven by technique and genuine hospitality. Best enjoyed slowly, with good wine and good company." },
-  { id: 3, name: "Amba", cuisine: "Indian-Inspired Small Plates", location: "Ohio City", priceRange: "$$", visited: true, photos: ["🫓","🌿","🍳"], coverEmoji: "🌙", tags: ["Small Plates","Cocktails","Vegetarian-Friendly"],
+  { id: 3, name: "Amba", cuisine: "Indian-Inspired Small Plates", location: "Ohio City", priceRange: "$$", visited: false, photos: ["🫓","🌿","🍳"], coverEmoji: "🌙", tags: ["Small Plates","Cocktails","Vegetarian-Friendly"],
     reviews: {
       1: { done: true, description: "Douglas Katz has built something genuinely exciting here. The clay bread alone — blistered, soft, ready to drag through everything — is worth the visit. The Indian-leaning mezze format rewards adventurous ordering. The amber-lit room creates the right mood.", taste: 9, value: 8, atmosphere: 9 },
       2: { done: true, description: "Amba is the most transportive dining room in Cleveland. Bold spices, clever contrasts, and a cocktail lounge that keeps pace with the food. The clay bread is non-negotiable. Build your table around three or four small plates.", taste: 8, value: 8, atmosphere: 9 },
@@ -42,7 +42,22 @@ const INITIAL_RESTAURANTS = [
   { id: 15, name: "Fahrenheit",                         cuisine: "Asian-Fusion / Steakhouse",      location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🔥", tags: ["Sushi","Steakhouse","Skyline Views"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 16, name: "Flour",                              cuisine: "Italian",                        location: "Brecksville / Moreland Hills", priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🌾", tags: ["Italian","Wood-Fired","Pasta"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 17, name: "Ginko",                              cuisine: "Sushi",                          location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍣", tags: ["Sushi","Omakase","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 18, name: "Good Company",                       cuisine: "American Diner",                 location: "Cleveland / Akron",           priceRange: "$$",   visited: false, photos: [], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
+  { id: 18, name: "Good Company",                       cuisine: "American Diner",                 location: "Cleveland / Akron",           priceRange: "$$",   visited: true, photos: ["https://imgur.com/a/z8VT41o"], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],           reviews: {
+      1: { 
+        done: true,
+        description: "Quite a hole in the wall place which is specially known for their 72 hour wings. Their wings live up to the hype, they are very tender and fall right off the bone (however a bit pricy $13 for 6 wings). Unfortunetly their burger and side of friend chicken skin do not live up to the greatness of their chicken wings.",
+        taste: 7,
+        value: 4,
+        atmosphere: 5,
+      }, 
+    2: { 
+      done: true,
+      description: "coming soon",
+      taste: 6,
+      value: 4,
+      atmosphere: 6,
+    }, 
+      3: { done: false } }, summary: "" },
   { id: 19, name: "Heart of Gold",                      cuisine: "American",                       location: "Ohio City",                   priceRange: "$$",   visited: false, photos: [], coverEmoji: "💛", tags: ["Smash Burger","Cocktails","Casual"],           reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 20, name: "Il Rione",                           cuisine: "Neapolitan Pizza",               location: "Gordon Square, Cleveland",    priceRange: "$$",   visited: false, photos: [], coverEmoji: "🍕", tags: ["Neapolitan Pizza","Rock n Roll","Date Night"], reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 21, name: "JoJo's Bar",                         cuisine: "Italian American Steakhouse",    location: "Chagrin Falls",               priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🕯️", tags: ["Steakhouse","Fresh Pasta","Celebrations"],   reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
@@ -435,7 +450,11 @@ function RestaurantPage({ restaurant, setPage }) {
           <div style={{ marginBottom: 40 }}>
             <SectionTitle>Photos</SectionTitle>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              {r.photos.map((p,i) => <div key={i} style={{ flex: "1 1 80px", minWidth: 80, background: "#1a1410", height: 140, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 48 }}>{p}</div>)}
+              {r.photos.map((p,i) => (
+  <div key={i} style={{ flex: "1 1 160px", minWidth: 160, height: 200, overflow: "hidden" }}>
+    <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+  </div>
+))}
               <div style={{ flex: "1 1 80px", minWidth: 80, background: "#ede8e0", height: 140, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4, border: "2px dashed #c8b89a" }}>
                 <span style={{ fontSize: 20, color: "#c8b89a" }}>+</span>
                 <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#c8b89a" }}>ADD PHOTO</span>
