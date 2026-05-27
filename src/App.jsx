@@ -152,6 +152,9 @@ const GLOBAL_CSS = `
   .filter-tabs { display: flex; border-bottom: 2px solid #ede8e0; margin-bottom: 24px; }
   .filter-tab { background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; padding: 10px 18px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; color: #6a5a4a; cursor: pointer; }
   .filter-tab.active { color: #C8472C; border-bottom-color: #C8472C; }
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .photo-grid a { display: block; cursor: zoom-in; }
+  .photo-grid img { display: block; width: 100%; height: auto; border-radius: 2px; }
   .fade-in { animation: fadeIn 0.4s ease forwards; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   ::-webkit-scrollbar { width: 6px; }
@@ -162,6 +165,7 @@ const GLOBAL_CSS = `
     .grid-3-rev { grid-template-columns: 1fr 1fr; }
     .mini-scores { display: none !important; }
     .score-label { width: 110px; }
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
   }
   @media (max-width: 580px) {
     .nav { padding: 0 14px; }
@@ -179,6 +183,7 @@ const GLOBAL_CSS = `
     .top-pick-inner { flex-direction: column !important; gap: 16px !important; }
     .res-header-inner { flex-direction: column !important; gap: 16px !important; }
     .status-item { min-width: 46%; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
   }
 `;
 
@@ -362,7 +367,7 @@ function RestaurantPage({ restaurant, setPage }) {
           <div className="res-header-inner" style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
             <div style={{ fontSize: 64, lineHeight: 1, flexShrink: 0 }}>{r.coverEmoji}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.25em", marginBottom: 8 }}>#{String(r.id).padStart(2,"00")} · {r.cuisine} · {r.location} · {r.priceRange}</div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.25em", marginBottom: 8 }}>#{String(r.id).padStart(2,"0")} · {r.cuisine} · {r.location} · {r.priceRange}</div>
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(24px, 5vw, 50px)", fontWeight: 900, color: "#f5f0e8", marginBottom: 12, wordBreak: "break-word" }}>{r.name}</h1>
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                 {r.tags.map(t => <span key={t} style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, color: "#c8b89a", border: "1px solid rgba(200,184,154,0.4)", padding: "3px 8px" }}>{t}</span>)}
@@ -392,22 +397,21 @@ function RestaurantPage({ restaurant, setPage }) {
             </div>
           ))}
         </div>
+
+        {/* PHOTOS — no cropping, clickable, no add photo box */}
         {r.photos.length > 0 && (
           <div style={{ marginBottom: 40 }}>
             <SectionTitle>Photos</SectionTitle>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              {r.photos.map((p,i) => (
-                <div key={i} style={{ flex: "1 1 160px", minWidth: 160, height: 200, overflow: "hidden" }}>
-                  <img src={p} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
+            <div className="photo-grid">
+              {r.photos.map((p, i) => (
+                <a key={i} href={p} target="_blank" rel="noreferrer">
+                  <img src={p} alt={`${r.name} photo ${i + 1}`} />
+                </a>
               ))}
-              <div style={{ flex: "1 1 80px", minWidth: 80, background: "#ede8e0", height: 200, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4, border: "2px dashed #c8b89a" }}>
-                <span style={{ fontSize: 20, color: "#c8b89a" }}>+</span>
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#c8b89a" }}>ADD PHOTO</span>
-              </div>
             </div>
           </div>
         )}
+
         {allDone ? (
           <>
             <div style={{ marginBottom: 40 }}>
@@ -451,9 +455,7 @@ function RestaurantPage({ restaurant, setPage }) {
                       ))}
                     </div>
                     <div style={{ textAlign: "center", background: "#1a1410", padding: "14px 18px", flexShrink: 0, minWidth: 66 }}>
-                      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 900, color: "#f5f0e8", lineHeight: 1 }}>
-                        {avgDone(r, cat.key)}
-                      </div>
+                      <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 900, color: "#f5f0e8", lineHeight: 1 }}>{avgDone(r, cat.key)}</div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, color: "#C8472C", letterSpacing: "0.1em", marginTop: 4 }}>AVG</div>
                     </div>
                   </div>
@@ -586,7 +588,7 @@ function ReviewersPage({ restaurants }) {
                   <tr key={`${r.id}-${cat}`} style={{ background: ci % 2 === 0 ? "#faf7f2" : "#fff" }}>
                     <td style={{ padding: "8px 9px", fontFamily: "'Playfair Display', serif", fontSize: 13, fontWeight: 700, color: "#1a1410", borderBottom: "1px solid #ede8e0" }}>{ci === 0 ? r.name : ""}</td>
                     <td style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#9a8a7a", textTransform: "capitalize", borderBottom: "1px solid #ede8e0" }}>{cat}</td>
-                    {[1,2,3].map(rid => <td key={rid} style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: REVIEWERS[rid-1].color, borderBottom: "1px solid #ede8e0" }}>{r.reviews[rid][cat]}</td>)}
+                    {[1,2,3].map(rid => <td key={rid} style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: REVIEWERS[rid-1].color, borderBottom: "1px solid #ede8e0" }}>{r.reviews[rid][cat] ?? "—"}</td>)}
                     <td style={{ padding: "8px 9px", fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700, color: "#1a1410", borderBottom: "1px solid #ede8e0" }}>{avgDone(r, cat)}</td>
                   </tr>
                 )))}
