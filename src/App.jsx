@@ -24,7 +24,7 @@ const INITIAL_RESTAURANTS = [
   { id: 15, name: "Fahrenheit",                          cuisine: "Asian-Fusion / Steakhouse",      location: "Downtown Cleveland",          priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🔥", tags: ["Sushi","Steakhouse","Skyline Views"],          reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 16, name: "Flour",                               cuisine: "Italian",                        location: "Brecksville / Moreland Hills", priceRange: "$$$", visited: false, photos: [], coverEmoji: "🌾", tags: ["Italian","Wood-Fired","Pasta"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
   { id: 17, name: "Ginko",                               cuisine: "Sushi",                          location: "Tremont",                     priceRange: "$$$",  visited: false, photos: [], coverEmoji: "🍣", tags: ["Sushi","Omakase","Date Night"],                reviews: { 1: { done: false }, 2: { done: false }, 3: { done: false } }, summary: "" },
-  { id: 18, name: "Good Company", cuisine: "American Diner", location: "Cleveland / Akron", priceRange: "$$", visited: true, photos: [], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],
+  { id: 18, name: "Good Company", cuisine: "American Diner", location: "Cleveland / Akron", priceRange: "$$", visited: true, photos: ["https://i.imgur.com/6kDIkIS.jpeg","https://i.imgur.com/idcYOM4.jpeg","https://i.imgur.com/Eldw1hg.jpeg","https://i.imgur.com/J7kYUi4.jpeg"], coverEmoji: "🧁", tags: ["Diner","Milkshakes","Comfort Food"],
     reviews: {
       1: {
         done: true,
