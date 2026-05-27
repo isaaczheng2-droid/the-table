@@ -326,7 +326,7 @@ function ChecklistPage({ restaurants, setPage, setSelectedId }) {
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ THE MASTER LIST</div>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 6 }}>Restaurant Checklist</h1>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 6, color: "#1a1410" }}>Restaurant Checklist</h1>
       <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#6a5a4a", marginBottom: 22, fontSize: 15 }}>Cleveland Magazine's 50 Best — working through every one.</p>
 
       <input type="text" placeholder="Search by name, cuisine or location…" value={search} onChange={e => setSearch(e.target.value)}
@@ -539,7 +539,7 @@ function RankingsPage({ restaurants, setPage, setSelectedId }) {
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ THE LEADERBOARD</div>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 26 }}>Rankings</h1>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 26, color: "#1a1410" }}>Rankings</h1>
       <div className="sort-tabs">
         {[["overall","Overall","🏆"],["value","Best Value","⭐"],["atmosphere","Best Atmosphere","🕯️"],["taste","Best Taste","🍴"]].map(([key,label,icon]) => (
           <button key={key} className={`sort-tab${sortBy === key ? " active" : ""}`} onClick={() => setSortBy(key)}>
@@ -590,7 +590,7 @@ function ReviewersPage({ restaurants }) {
   return (
     <div className="fade-in page">
       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#C8472C", letterSpacing: "0.3em", marginBottom: 8 }}>✦ MEET THE CRITICS</div>
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 28 }}>The Reviewers</h1>
+      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px, 5vw, 46px)", fontWeight: 900, marginBottom: 28, color: "#1a1410" }}>The Reviewers</h1>
       <div className="grid-3" style={{ marginBottom: 48 }}>
         {REVIEWERS.map(rev => (
           <div key={rev.id} className="card">
